@@ -270,6 +270,13 @@ COPY --from=builder-pg_sparse /tmp/pg-sparse*.deb /tmp/extensions-deb/
 COPY --from=builder-pg_bm25 /tmp/pg-bm25*.deb /tmp/extensions-deb/
 COPY --from=builder-pg_analytics /tmp/pg-analytics*.deb /tmp/extensions-deb/
 
+# citus
+RUN <<EOF
+curl https://install.citusdata.com/community/deb.sh > add-citus-repo.sh
+bash add-citus-repo.sh
+apt-get -y install postgresql-16-citus-12.1
+EOF
+
 RUN dpkg -i /tmp/extensions-deb/*.deb \
     && rm -rf /tmp/extensions-deb
 

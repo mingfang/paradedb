@@ -5,6 +5,7 @@ set -Eeuo pipefail
 
 # List of extensions to pre-install in ParadeDB
 extensions=(
+  citus
   pg_bm25
   pg_analytics
   svector
@@ -14,6 +15,7 @@ extensions=(
 # List of extensions that must be added to shared_preload_libraries to be installed. Extensions that
 # get added to shared_preload_libraries must also be listed in `extensions` above in order to get installed.
 preload_names=(
+  citus
   pg_bm25
   pg_analytics
 )
